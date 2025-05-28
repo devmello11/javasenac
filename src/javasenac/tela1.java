@@ -18,6 +18,34 @@ public class tela1 extends javax.swing.JFrame {
         result.setEnabled(false);
         setExtendedState(MAXIMIZED_BOTH);
     }
+   public void som(){
+        int numero = Integer.parseInt(number1.getText());
+       int numero2 = Integer.parseInt(number2.getText());
+       int resultado = numero + numero2;
+       lbResult.setText("Resultado é " + resultado);
+      
+   }
+   public void sub(){
+        int numero = Integer.parseInt(number1.getText());
+       int numero2 = Integer.parseInt(number2.getText());
+       int resultado = numero - numero2;
+       lbResult.setText("Resultado é " + resultado);
+      
+   }
+   public void mult(){
+       double numero = Double.parseDouble(number1.getText());
+       double numero2 = Double.parseDouble(number2.getText());
+       double resultado = numero * numero2;
+       lbResult.setText("Resultado é " + resultado);
+       
+   }
+   public void div(){
+        double numero = Double.parseDouble(number1.getText());
+       double numero2 = Double.parseDouble(number2.getText());
+       double resultado = numero / numero2;
+       lbResult.setText("Resultado é " + resultado);
+       
+   }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,6 +71,7 @@ public class tela1 extends javax.swing.JFrame {
         btMult = new javax.swing.JButton();
         btDiv = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
+        comboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -147,6 +176,18 @@ public class tela1 extends javax.swing.JFrame {
             }
         });
 
+        comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Multiplicação", "Divisão", "Soma", "Subtração" }));
+        comboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboBoxItemStateChanged(evt);
+            }
+        });
+        comboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -189,8 +230,13 @@ public class tela1 extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addGap(584, 584, 584)
                             .addComponent(btMult))))
-                .addGap(119, 119, 119)
-                .addComponent(btnClear)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addComponent(btnClear))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(404, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -202,11 +248,16 @@ public class tela1 extends javax.swing.JFrame {
                     .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addComponent(btnImprimir)
-                .addGap(4, 4, 4)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(result, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(result, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(comboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(number1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -268,21 +319,11 @@ public class tela1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btsomActionPerformed
 
     private void btsomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btsomMouseClicked
-       int numero = Integer.parseInt(number1.getText());
-       int numero2 = Integer.parseInt(number2.getText());
-       int resultado = numero + numero2;
-       lbResult.setText("Resultado é " + resultado);
-       number1.setText(null);
-       number2.setText(null);
+       som();
     }//GEN-LAST:event_btsomMouseClicked
 
     private void btSubMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btSubMouseClicked
-        int numero = Integer.parseInt(number1.getText());
-       int numero2 = Integer.parseInt(number2.getText());
-       int resultado = numero - numero2;
-       lbResult.setText("Resultado é " + resultado);
-       number1.setText(null);
-       number2.setText(null);
+      sub();
     }//GEN-LAST:event_btSubMouseClicked
 
     private void btSubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSubActionPerformed
@@ -290,12 +331,7 @@ public class tela1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btSubActionPerformed
 
     private void btMultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btMultMouseClicked
-      double numero = Double.parseDouble(number1.getText());
-       double numero2 = Double.parseDouble(number2.getText());
-       double resultado = numero * numero2;
-       lbResult.setText("Resultado é " + resultado);
-       number1.setText(null);
-       number2.setText(null);
+     mult();
     }//GEN-LAST:event_btMultMouseClicked
 
     private void btMultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMultActionPerformed
@@ -303,12 +339,7 @@ public class tela1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btMultActionPerformed
 
     private void btDivMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btDivMouseClicked
-       double numero = Double.parseDouble(number1.getText());
-       double numero2 = Double.parseDouble(number2.getText());
-       double resultado = numero / numero2;
-       lbResult.setText("Resultado é " + resultado);
-       number1.setText(null);
-       number2.setText(null);
+       div();
     }//GEN-LAST:event_btDivMouseClicked
 
     private void btDivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDivActionPerformed
@@ -319,6 +350,25 @@ public class tela1 extends javax.swing.JFrame {
         number1.setText(null);
         number2.setText(null);
     }//GEN-LAST:event_btnClearMouseClicked
+
+    private void comboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxActionPerformed
+
+    private void comboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxItemStateChanged
+        if(comboBox.getSelectedItem().equals("Soma")){
+        som();
+      
+        }else if(comboBox.getSelectedItem().equals("Subtração")){
+        sub();
+    
+        }else if (comboBox.getSelectedItem().equals("Multiplicação")){
+        mult();
+      
+        }else if (comboBox.getSelectedItem().equals("Multiplicação")){
+        div();
+        }
+    }//GEN-LAST:event_comboBoxItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -362,6 +412,7 @@ public class tela1 extends javax.swing.JFrame {
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btsom;
+    private javax.swing.JComboBox<String> comboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
